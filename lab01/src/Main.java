@@ -1,9 +1,13 @@
+
+import ambiente.Ambiente;
+import robo.Robo;
+
 public class Main {
     public static void main(String[] args) {
         // Criação de um objeto Ambiente com dimensões definidas
         Ambiente ambiente = new Ambiente(100, 100);
 
-        // Criação de um objeto Robo com posição inicial
+        // Criação de um objeto Robo com posição inicial 
         Robo robo1 = new Robo("Alpha", 50, 50);
         robo1.exibirPosicao();
 

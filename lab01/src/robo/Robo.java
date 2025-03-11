@@ -1,3 +1,5 @@
+package robo;
+
 public class Robo {
     // Atributos
     private String nome;
@@ -29,5 +31,5 @@ public class Robo {
 
     public int getPosicaoY() {
         return posicaoY;
-    }
+    } 
 }

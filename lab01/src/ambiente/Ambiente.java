@@ -1,3 +1,5 @@
+package ambiente;
+
 public class Ambiente {
     // Atributos do ambiente
     private int largura;
@@ -14,3 +16,4 @@ public class Ambiente {
         return (x >= 0 && x <= largura) && (y >= 0 && y <= altura);
     }
 }
+
