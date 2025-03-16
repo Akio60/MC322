@@ -15,5 +15,13 @@ public class Ambiente {
     public boolean dentroDosLimites(int x, int y) {
         return (x >= 0 && x <= largura) && (y >= 0 && y <= altura);
     }
+    
+    public int getLargura() {
+        return largura;
+    }
+    
+    public int getAltura() {
+        return altura;
+    }
 }
 
