@@ -1,19 +1,29 @@
-
 import ambiente.Ambiente;
+import java.util.Scanner;
 import robo.Robo;
 
 public class Main {
     public static void main(String[] args) {
-        // Criação de um objeto Ambiente com dimensões definidas
-        Ambiente ambiente = new Ambiente(100, 100);
+        Scanner scanner = new Scanner(System.in);
 
-        // Criação de um objeto Robo com posição inicial 
+        System.out.println("Digite a largura do ambiente:");
+        int largura = scanner.nextInt();
+        System.out.println("Digite a altura do ambiente:");
+        int altura = scanner.nextInt();
+
+        // Criação do ambiente com as dimensões fornecidas
+        Ambiente ambiente = new Ambiente(largura, altura);
+
+        // Criação do robô (mantendo posição inicial fixa para simplicidade)
         Robo robo1 = new Robo("Alpha", 50, 50);
         robo1.exibirPosicao();
 
-        // Definição dos deslocamentos desejados
-        int deltaX = 10;
-        int deltaY = -20;
+        // Leitura dos deslocamentos
+        System.out.println("Digite o deslocamento em X:");
+        int deltaX = scanner.nextInt();
+        System.out.println("Digite o deslocamento em Y:");
+        int deltaY = scanner.nextInt();
+
         int novoX = robo1.getPosicaoX() + deltaX;
         int novoY = robo1.getPosicaoY() + deltaY;
 
@@ -27,5 +37,7 @@ public class Main {
 
         // Exibição da posição final do robô
         robo1.exibirPosicao();
+
+        scanner.close();
     }
 }
