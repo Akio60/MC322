@@ -18,4 +18,12 @@ public class RoboTerrestre extends Robo {
             System.out.println("Movimento excede velocidade máxima!");
         }
     }
+
+    public int getVelocidadeMaxima() {
+        return velocidadeMaxima;
+    }
+
+    public void setVelocidadeMaxima(int velocidadeMaxima) {
+        this.velocidadeMaxima = velocidadeMaxima;
+    }
 }

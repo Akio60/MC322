@@ -22,4 +22,28 @@ public class Ambiente {
                y >= 0 && y < altura && 
                z >= 0 && z < alturaMaxima;
     }
+
+    public int getLargura() {
+        return largura;
+    }
+
+    public void setLargura(int largura) {
+        this.largura = largura;
+    }
+
+    public int getAltura() {
+        return altura;
+    }
+
+    public void setAltura(int altura) {
+        this.altura = altura;
+    }
+
+    public int getAlturaMaxima() {
+        return alturaMaxima;
+    }
+
+    public void setAlturaMaxima(int alturaMaxima) {
+        this.alturaMaxima = alturaMaxima;
+    }
 }

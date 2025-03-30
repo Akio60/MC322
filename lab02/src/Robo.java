@@ -26,4 +26,36 @@ public class Robo {
     public void exibirPosicao() {
         System.out.println(nome + " está em (" + posicaoX + ", " + posicaoY + ")");
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDirecao() {
+        return direcao;
+    }
+
+    public void setDirecao(String direcao) {
+        this.direcao = direcao;
+    }
+
+    public int getPosicaoX() {
+        return posicaoX;
+    }
+
+    public void setPosicaoX(int posicaoX) {
+        this.posicaoX = posicaoX;
+    }
+
+    public int getPosicaoY() {
+        return posicaoY;
+    }
+
+    public void setPosicaoY(int posicaoY) {
+        this.posicaoY = posicaoY;
+    }
 }
