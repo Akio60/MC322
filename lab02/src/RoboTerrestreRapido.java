@@ -1,3 +1,5 @@
+import lab03.src.RoboTerrestre;
+
 public class RoboTerrestreRapido extends RoboTerrestre {
     private double multiplicadorVelocidade; // Multiplicador que aumenta a velocidade do robô
 

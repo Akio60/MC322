@@ -1,3 +1,5 @@
+import lab03.src.Robo;
+
 public class RoboAereo extends Robo {
     protected int altitude; // Altitude atual do robô
     protected int altitudeMaxima; // Altitude máxima permitida para o robô

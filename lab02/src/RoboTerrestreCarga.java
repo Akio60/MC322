@@ -1,3 +1,5 @@
+import lab03.src.RoboTerrestre;
+
 public class RoboTerrestreCarga extends RoboTerrestre {
     private int capacidadeCarga; // Capacidade máxima de carga em kg
     private int cargaAtual; // Carga atual em kg

@@ -1,3 +1,7 @@
+import lab03.src.Ambiente;
+import lab03.src.RoboAereo;
+import lab03.src.RoboTerrestre;
+
 public class Main {
     public static void main(String[] args) {
         // Criar ambiente e robôs (definição de parâmetros)

@@ -1,3 +1,5 @@
+import lab03.src.RoboAereo;
+
 public class RoboAreroCaptura extends RoboAereo {
     private int resolucaoCamera; // Resolução da câmera em megapixels
 

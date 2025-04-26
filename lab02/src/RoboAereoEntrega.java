@@ -1,3 +1,5 @@
+import lab03.src.RoboAereo;
+
 public class RoboAereoEntrega extends RoboAereo {
     private int capacidadeCarga; // capacidade máxima de carga em kg
 

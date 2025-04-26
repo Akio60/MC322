@@ -1,3 +1,5 @@
+import lab03.src.Robo;
+
 public class RoboTerrestre extends Robo {
     int velocidadeMaxima;
 
