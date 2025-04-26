@@ -1,5 +1,5 @@
 
-# LAB03 - Simulador de Robos
+# lab03 - Simulador de Robos
 
 ## IDE e Java
 - IDE: IntelliJ IDEA

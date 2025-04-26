@@ -1,8 +1,6 @@
-package LAB03.src;
+package lab03.src;
 
 import java.util.ArrayList;
-
-import LAB03.src.Robo;
 
 public class Ambiente {
     private final int largura;
@@ -33,6 +31,10 @@ public class Ambiente {
 
     public void adicionarObstaculo(Obstaculo o) {
         obstaculos.add(o);
+    }
+
+    public void removerObstaculo(Obstaculo o) {
+        obstaculos.remove(o);
     }
 
     public boolean detectarColisao(Robo r) {

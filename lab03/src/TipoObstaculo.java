@@ -1,24 +1,25 @@
-package LAB03.src;
+package lab03.src;
+
 public enum TipoObstaculo {
-    PAREDE(3, true),
-    ARVORE(5, true),
-    PREDIO(10, true),
-    BURACO(0, true),
-    OUTRO(-1, false);
+    BASE_ALIADA(true, "Base Aliada"),
+    ARMADILHA(true, "Armadilha"),
+    ARVORE(true, "Árvore"),
+    ROCHA(true, "Rocha"),
+    BASE_INIMIGA(true, "Base Inimiga");
 
-    private final int alturaPadrao;
     private final boolean bloqueiaPassagem;
+    private final String descricao;
 
-    TipoObstaculo(int alturaPadrao, boolean bloqueiaPassagem) {
-        this.alturaPadrao = alturaPadrao;
+    TipoObstaculo(boolean bloqueiaPassagem, String descricao) {
         this.bloqueiaPassagem = bloqueiaPassagem;
-    }
-
-    public int getAlturaPadrao() {
-        return alturaPadrao;
+        this.descricao = descricao;
     }
 
     public boolean isBloqueiaPassagem() {
         return bloqueiaPassagem;
+    }
+
+    public String getDescricao() {
+        return descricao;
     }
 }

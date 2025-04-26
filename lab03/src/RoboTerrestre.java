@@ -1,6 +1,4 @@
-package LAB03.src;
-
-import Robo;
+package lab03.src;
 
 public class RoboTerrestre extends Robo {
     public RoboTerrestre(String nome, int x, int y) {

@@ -1,7 +1,6 @@
-package LAB03.src;
-import java.util.ArrayList;
+package lab03.src;
 
-import Ambiente;
+import java.util.ArrayList;
 
 public abstract class Robo {
     protected final String nome;
