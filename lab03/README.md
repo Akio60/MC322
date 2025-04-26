@@ -1,80 +1,66 @@
+# Laboratório 3 - Simulador de Robôs 🤖
 
-# lab03 - Simulador de Robos
-
-## IDE e Java
-- IDE: IntelliJ IDEA
-- Java: OpenJDK 17
+## Informações do Projeto
+- **IDE:** Visual Studio Code
+- **Java:** OpenJDK 17
 
 ## Descrição
-Este repositório contém a implementação de um simulador de robôs, onde diferentes tipos de robôs interagem em um ambiente com obstáculos e sensores.
+Este projeto implementa um simulador de robôs com diferentes tipos de sensores e capacidades, utilizando conceitos de orientação a objetos como herança, polimorfismo e composição.
 
-## Estrutura
-- `Ambiente`: define espaço, limites, robôs e obstáculos.
-- `Obstaculo` + `TipoObstaculo`: implementa obstáculos e enums.
-- `Sensor` + subclasses: implementa sensores de altitude e proximidade.
-- `Robo`, `RoboTerrestre`, `RoboAereo`: hierarquia de robôs.
-- `Main`: instância e menu interativo.
-
-## Como executar
-1. Compile todas as classes: `javac *.java`
-2. Execute: `java Main`
+## Como Executar
+1. Navegue até o diretório `lab03/src`
+2. Compile os arquivos Java:
+   ```bash
+   javac -d bin *.java
+   ```
+3. Execute o programa principal:
+   ```bash
+   java -cp bin lab03.src.Main
+   ```
 
 ## Diagrama de Classes
-```plantuml
-@startuml
-class Ambiente {
-  - largura: int
-  - altura: int
-  - robos: List<Robo>
-  - obstaculos: List<Obstaculo>
-  + adicionarRobo(r: Robo)
-  + removerRobo(r: Robo)
-  + dentroDosLimites(x:int,y:int,alt:int):boolean
-  + detectarColisao(r: Robo): boolean
-}
+![Diagrama de Classes](diagrama_classes.png)
 
-class Obstaculo {
-  - posicaoX1,int
-  - posicaoY1,int
-  - posicaoX2,int
-  - posicaoY2,int
-  - altura:int
-  - tipo:TipoObstaculo
-  + bloqueiaPosicao(x:int,y:int):boolean
-}
+### Principais Classes e Relacionamentos
 
-enum TipoObstaculo { PAREDE, ARVORE, PREDIO, BURACO, OUTRO }
+#### Hierarquia de Robôs
+- `Robo` (abstrata)
+  - Atributos: nome (String), x/y (int), altitude (int), sensores (ArrayList<Sensor>)
+  - Métodos principais: mover(dx,dy,dh), usarSensores(ambiente)
+- `RoboTerrestre` e `RoboAereo` (herdam de Robo)
+  - Implementam comportamentos específicos de movimento
 
-abstract class Sensor {
-  - raio:double
-  - robo:Robo
-  + monitorar(ambiente:Ambiente)
-}
+#### Sensores e Estratégias
+- `Sensor` (abstrata)
+  - Atributos: raio (double), robo (Robo)
+  - Método abstrato: monitorar(ambiente)
+- Tipos específicos: `SensorTerreno`, `SensorNavegacao`, `SensorTatico`
+  - Cada um implementa sua própria estratégia de monitoramento
 
-class SensorAltitude
-class SensorProximidade
-Sensor <|-- SensorAltitude
-Sensor <|-- SensorProximidade
+#### Ambiente e Obstáculos
+- `Ambiente`
+  - Gerencia robôs e obstáculos
+  - Verifica limites e colisões
+- `Obstaculo`
+  - Representa elementos do ambiente
+  - Associado a um `TipoObstaculo`
 
-abstract class Robo {
-  - nome:String
-  - x:int
-  - y:int
-  - altitude:int
-  - sensores: List<Sensor>
-  + mover(dx:int,dy:int,dh:int)
-  + usarSensores(a:Ambiente)
-}
+### Padrões de Projeto Utilizados
+1. **Strategy**: Implementado nos diferentes tipos de sensores
+2. **Template Method**: Na hierarquia de robôs
+3. **Composite**: Na relação entre robôs e sensores
+4. **Value Object**: Na enumeração de tipos de obstáculos
 
-class RoboTerrestre
-class RoboAereo
-Robo <|-- RoboTerrestre
-Robo <|-- RoboAereo
+### Linha de Raciocínio
+O diagrama foi construído pensando em maximizar a reutilização de código e flexibilidade:
 
-Ambiente "1" *-- "*" Robo
-Ambiente "1" *-- "*" Obstaculo
-Robo "1" *-- "*" Sensor
-@enduml
-```
+1. **Robôs e Sensores**: Relação de composição permite que robôs tenham múltiplos sensores
+2. **Hierarquia de Sensores**: Permite adicionar novos tipos de sensores facilmente
+3. **Ambiente como Controlador**: Centraliza a lógica de verificação de limites e colisões
+4. **Obstáculos como Entidades**: Encapsula diferentes tipos de obstáculos com comportamentos específicos
 
-> **Diagrama**: Utilizei herança para diferenciar tipos de robôs, composição para ambiente-robo/obstáculo e sensores, e enums para tipos de obstáculos.
+### Principais Decisões de Design
+1. Uso de classes abstratas para `Robo` e `Sensor` para garantir implementação de comportamentos essenciais
+2. Composição para sensores permite maior flexibilidade que herança
+3. Enumeração para tipos de obstáculos facilita manutenção e evita strings mágicas
+4. Interface limpa entre componentes permite fácil extensão do sistema
