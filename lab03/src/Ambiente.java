@@ -2,9 +2,16 @@ package lab03.src;
 
 import java.util.ArrayList;
 
+/**
+ * Classe que representa o ambiente da simulação.
+ * Gerencia robôs e obstáculos através de composição.
+ * Responsável por verificar limites e colisões.
+ */
 public class Ambiente {
+    // Dimensões do ambiente
     private final int largura;
     private final int altura;
+    // Listas de elementos - implementam composição
     private final ArrayList<Robo> robos = new ArrayList<>();
     private final ArrayList<Obstaculo> obstaculos = new ArrayList<>();
 
@@ -25,6 +32,10 @@ public class Ambiente {
         robos.remove(r);
     }
 
+    /**
+     * Verifica se uma posição está dentro dos limites do ambiente.
+     * Usado para validar movimentações de robôs.
+     */
     public boolean dentroDosLimites(int x, int y, int alt) {
         return x >= 0 && x < largura && y >= 0 && y < altura;
     }
@@ -37,6 +48,10 @@ public class Ambiente {
         obstaculos.remove(o);
     }
 
+    /**
+     * Detecta colisões entre robôs e obstáculos.
+     * Importante para a segurança da navegação.
+     */
     public boolean detectarColisao(Robo r) {
         for (Obstaculo o : obstaculos) {
             if (o.bloqueiaPosicao(r.getX(), r.getY())) {

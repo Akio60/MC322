@@ -1,11 +1,17 @@
 package lab03.src;
 
+/**
+ * Enumeração que define os tipos possíveis de obstáculos.
+ * Cada tipo tem suas próprias características.
+ * Implementa o padrão Value Object para propriedades imutáveis.
+ */
 public enum TipoObstaculo {
-    BASE_ALIADA(true, "Base Aliada"),
-    ARMADILHA(true, "Armadilha"),
-    ARVORE(true, "Árvore"),
-    ROCHA(true, "Rocha"),
-    BASE_INIMIGA(true, "Base Inimiga");
+    // Definição dos tipos com suas características
+    BASE_ALIADA(true, "Base Aliada"),    // Base amiga
+    ARMADILHA(true, "Armadilha"),        // Perigo para navegação
+    ARVORE(true, "Árvore"),              // Obstáculo natural
+    ROCHA(true, "Rocha"),                // Obstáculo natural
+    BASE_INIMIGA(true, "Base Inimiga");  // Base hostil
 
     private final boolean bloqueiaPassagem;
     private final String descricao;
