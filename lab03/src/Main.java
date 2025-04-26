@@ -148,11 +148,114 @@ public class Main {
         }
     }
 
+    private static void inicializarAmbienteTeste(Ambiente ambiente) {
+        // Criar robôs terrestres
+        RoboTerrestre rt1 = new RoboTerrestre("RT-Scout", 10, 10);
+        RoboTerrestre rt2 = new RoboTerrestre("RT-Guard", 30, 30);
+        
+        // Criar robôs aéreos
+        RoboAereo ra1 = new RoboAereo("RA-Eagle", 20, 20, 5);
+        RoboAereo ra2 = new RoboAereo("RA-Hawk", 40, 40, 8);
+
+        // Adicionar sensores aos robôs
+        rt1.adicionarSensor(new SensorTerreno(rt1, 8));
+        rt1.adicionarSensor(new SensorTatico(rt1, 12));
+
+        rt2.adicionarSensor(new SensorTerreno(rt2, 10));
+        rt2.adicionarSensor(new SensorNavegacao(rt2, 15));
+
+        ra1.adicionarSensor(new SensorNavegacao(ra1, 10));
+        ra1.adicionarSensor(new SensorTatico(ra1, 20));
+
+        ra2.adicionarSensor(new SensorTerreno(ra2, 15));
+        ra2.adicionarSensor(new SensorTatico(ra2, 25));
+
+        // Adicionar robôs ao ambiente
+        try {
+            ambiente.adicionarRobo(rt1);
+            ambiente.adicionarRobo(rt2);
+            ambiente.adicionarRobo(ra1);
+            ambiente.adicionarRobo(ra2);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro ao adicionar robôs: " + e.getMessage());
+        }
+
+        // Criar e adicionar obstáculos
+        Obstaculo[] obstaculos = {
+            new Obstaculo(5, 5, 3, TipoObstaculo.BASE_ALIADA),
+            new Obstaculo(95, 95, 3, TipoObstaculo.BASE_INIMIGA),
+            new Obstaculo(15, 15, 2, TipoObstaculo.ARMADILHA),
+            new Obstaculo(25, 25, 5, TipoObstaculo.ARVORE),
+            new Obstaculo(35, 35, 4, TipoObstaculo.ROCHA),
+            new Obstaculo(45, 45, 2, TipoObstaculo.ARMADILHA)
+        };
+
+        for (Obstaculo o : obstaculos) {
+            ambiente.adicionarObstaculo(o);
+        }
+
+        System.out.println("\n>>> Ambiente de teste inicializado com sucesso!");
+        System.out.println(">>> 4 robôs e 6 obstáculos criados!");
+    }
+
+    private static void exibirStatusRobos(Scanner sc, ArrayList<Robo> robos) {
+        if (robos.isEmpty()) {
+            System.out.println("\nNenhum robô cadastrado.");
+            return;
+        }
+
+        while (true) {
+            mostrarTitulo("STATUS DOS ROBÔS");
+            // Exibe lista resumida
+            for (int i = 0; i < robos.size(); i++) {
+                Robo r = robos.get(i);
+                System.out.printf("  %d. %s em (%d,%d) altitude=%d\n", 
+                    i+1, r.getNome(), r.getX(), r.getY(), r.getAltitude());
+            }
+
+            System.out.println("\nOpções:");
+            System.out.println("  1. Ver detalhes de um robô");
+            System.out.println("  0. Voltar ao menu principal");
+            System.out.print("\nEscolha uma opção: ");
+            
+            int opc = sc.nextInt();
+            if (opc == 0) break;
+
+            if (opc == 1) {
+                System.out.print("Digite o número do robô: ");
+                int idx = sc.nextInt() - 1;
+                if (idx >= 0 && idx < robos.size()) {
+                    Robo r = robos.get(idx);
+                    mostrarTitulo("DETALHES DO ROBÔ: " + r.getNome());
+                    System.out.printf("Posição: (%d,%d)\n", r.getX(), r.getY());
+                    System.out.printf("Altitude: %d\n", r.getAltitude());
+                    System.out.println("\nSensores instalados:");
+                    if (r.getSensores().isEmpty()) {
+                        System.out.println("  Nenhum sensor instalado");
+                    } else {
+                        for (Sensor s : r.getSensores()) {
+                            System.out.printf("  - %s (alcance: %.1f)\n", 
+                                s.getClass().getSimpleName(), s.getRaio());
+                        }
+                    }
+                    System.out.println("\nPressione ENTER para continuar...");
+                    sc.nextLine(); // limpa buffer
+                    sc.nextLine(); // espera ENTER
+                } else {
+                    System.out.println(">>> Índice inválido! <<<");
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Ambiente ambiente = new Ambiente(100, 100);
         Scanner sc = new Scanner(System.in);
 
         mostrarTitulo("BEM-VINDO AO SIMULADOR DE ROBÔS");
+        
+        // Inicializar ambiente de teste
+        inicializarAmbienteTeste(ambiente);
 
         while (true) {
             mostrarTitulo("MENU PRINCIPAL");
@@ -171,11 +274,7 @@ public class Main {
             try {
                 switch (opc) {
                     case 1:
-                        mostrarTitulo("STATUS DOS ROBÔS");
-                        for (Robo r : ambiente.getRobos()) {
-                            System.out.printf("  %s em (%d,%d) altitude=%d\n", 
-                                r.getNome(), r.getX(), r.getY(), r.getAltitude());
-                        }
+                        exibirStatusRobos(sc, ambiente.getRobos());
                         break;
                     case 2:
                         gerenciarRobos(sc, ambiente);

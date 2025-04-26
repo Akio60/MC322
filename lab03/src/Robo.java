@@ -36,6 +36,13 @@ public abstract class Robo {
     }
 
     /**
+     * Retorna a lista de sensores instalados no robô.
+     */
+    public ArrayList<Sensor> getSensores() {
+        return sensores;
+    }
+
+    /**
      * Aciona todos os sensores instalados no robô.
      * Demonstra uso de polimorfismo com os diferentes tipos de sensores.
      */

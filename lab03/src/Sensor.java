@@ -23,4 +23,11 @@ public abstract class Sensor {
      * Cada tipo de sensor implementa sua própria lógica.
      */
     public abstract void monitorar(Ambiente ambiente);
+
+    /**
+     * Retorna o raio de alcance do sensor.
+     */
+    public double getRaio() {
+        return raio;
+    }
 }
