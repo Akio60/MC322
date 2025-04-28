@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-import lab03.src.Robo;
+import lab02;.src.Robo;
 
 public class Ambiente {
     private int largura;

@@ -1,6 +1,6 @@
-import lab03.src.Ambiente;
-import lab03.src.RoboAereo;
-import lab03.src.RoboTerrestre;
+import lab02.src.Ambiente;
+import lab02.src.RoboAereo;
+import lab02.src.RoboTerrestre;
 
 public class Main {
     public static void main(String[] args) {

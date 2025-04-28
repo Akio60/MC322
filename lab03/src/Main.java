@@ -32,18 +32,13 @@ public class Main {
             double raio = sc.nextDouble();
             
             switch (opcao) {
-                case 1:
-                    robo.adicionarSensor(new SensorTerreno(robo, raio));
-                    break;
-                case 2:
-                    robo.adicionarSensor(new SensorNavegacao(robo, raio));
-                    break;
-                case 3:
-                    robo.adicionarSensor(new SensorTatico(robo, raio));
-                    break;
-                default:
+                case 1 -> robo.adicionarSensor(new SensorTerreno(robo, raio));
+                case 2 -> robo.adicionarSensor(new SensorNavegacao(robo, raio));
+                case 3 -> robo.adicionarSensor(new SensorTatico(robo, raio));
+                default -> {
                     System.out.println("Opção inválida!");
                     continue;
+                }
             }
             System.out.println(">>> Sensor adicionado com sucesso! <<<");
         }
@@ -250,9 +245,8 @@ public class Main {
 
     public static void main(String[] args) {
         Ambiente ambiente = new Ambiente(100, 100);
-        Scanner sc = new Scanner(System.in);
-
-        mostrarTitulo("BEM-VINDO AO SIMULADOR DE ROBÔS");
+        try (Scanner sc = new Scanner(System.in)) {
+            mostrarTitulo("BEM-VINDO AO SIMULADOR DE ROBÔS");
         
         // Inicializar ambiente de teste
         inicializarAmbienteTeste(ambiente);
@@ -273,20 +267,11 @@ public class Main {
 
             try {
                 switch (opc) {
-                    case 1:
-                        exibirStatusRobos(sc, ambiente.getRobos());
-                        break;
-                    case 2:
-                        gerenciarRobos(sc, ambiente);
-                        break;
-                    case 3:
-                        gerenciarObstaculos(sc, ambiente);
-                        break;
-                    case 4:
-                        usarSensores(sc, ambiente);
-                        break;
-                    default:
-                        System.out.println("\n>>> Opção inválida! <<<");
+                    case 1 -> exibirStatusRobos(sc, ambiente.getRobos());
+                    case 2 -> gerenciarRobos(sc, ambiente);
+                    case 3 -> gerenciarObstaculos(sc, ambiente);
+                    case 4 -> usarSensores(sc, ambiente);
+                    default -> System.out.println("\n>>> Opção inválida! <<<");
                 }
                 System.out.println("\nPressione ENTER para continuar...");
                 sc.nextLine(); // limpa buffer
@@ -299,9 +284,9 @@ public class Main {
             }
         }
         mostrarTitulo("SIMULAÇÃO ENCERRADA");
-        sc.close();
+            mostrarTitulo("SIMULAÇÃO ENCERRADA");
+        }
     }
-
     private static void gerenciarRobos(Scanner sc, Ambiente ambiente) {
         while (true) {
             mostrarTitulo("GERENCIAR ROBÔS");
@@ -316,13 +301,9 @@ public class Main {
 
             try {
                 switch (opc) {
-                    case 1:
-                        inicializarRobos(sc, ambiente);
-                        break;
-                    case 2:
-                        removerRobo(sc, ambiente);
-                        break;
-                    case 3:
+                    case 1 -> inicializarRobos(sc, ambiente);
+                    case 2 -> removerRobo(sc, ambiente);
+                    case 3 -> {
                         System.out.print("Nome do robo: ");
                         String nome = sc.next();
                         System.out.print("dx dy dh: ");
@@ -332,11 +313,10 @@ public class Main {
                                 r.mover(dx, dy, dh);
                             }
                         }
-                        break;
-                    default:
-                        System.out.println("\n>>> Opção inválida! <<<");
+                    }
+                    default -> System.out.println("\n>>> Opção inválida! <<<");
                 }
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println("\n>>> ERRO: " + e.getMessage() + " <<<");
                 sc.nextLine();
             }
@@ -357,10 +337,8 @@ public class Main {
 
             try {
                 switch (opc) {
-                    case 1:
-                        exibirObstaculos(ambiente.getObstaculos());
-                        break;
-                    case 2:
+                    case 1 -> exibirObstaculos(ambiente.getObstaculos());
+                    case 2 -> {
                         mostrarTitulo("ADICIONAR OBSTÁCULO");
                         TipoObstaculo tipoSelecionado = selecionarTipoObstaculo(sc);
                         System.out.print("\nPosição (X Y): ");
@@ -370,9 +348,8 @@ public class Main {
                         
                         ambiente.adicionarObstaculo(new Obstaculo(x, y, altura, tipoSelecionado));
                         System.out.println("\n>>> Obstáculo adicionado com sucesso! <<<");
-                        Thread.sleep(1500);
-                        break;
-                    case 3:
+                    }
+                    case 3 -> {
                         mostrarTitulo("REMOVER OBSTÁCULO");
                         ArrayList<Obstaculo> obstaculos = ambiente.getObstaculos();
                         exibirObstaculos(obstaculos);
@@ -386,11 +363,10 @@ public class Main {
                                 System.out.println("Índice inválido!");
                             }
                         }
-                        break;
-                    default:
-                        System.out.println("\n>>> Opção inválida! <<<");
+                    }
+                    default -> System.out.println("\n>>> Opção inválida! <<<");
                 }
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println("\n>>> ERRO: " + e.getMessage() + " <<<");
                 sc.nextLine();
             }
