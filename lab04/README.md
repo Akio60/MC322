@@ -20,15 +20,6 @@ Este projeto simula um ambiente tridimensional onde robôs inteligentes interage
 - Melhoria da visualização do ambiente com **representação 2D em console**, ignorando a coordenada Z.
 - Robôs **não aparecem no mapa** quando estão desligados.
 
----
-
-## Diagrama de Classes UML Atualizado
-
-![Diagrama UML](A_UML_class_diagram_in_the_image_depicts_a_hierarc.png)  
-*(Diagrama gerado com base nos arquivos finais enviados)*
-
----
-
 ## Interfaces Criadas e Onde Foram Implementadas
 
 | Interface       | Descrição                                             | Classes que implementam          |
